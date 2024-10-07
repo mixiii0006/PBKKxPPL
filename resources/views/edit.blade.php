@@ -86,20 +86,21 @@
     </style>
 </head>
 <body>
-    <h1>Create New Data</h1>
-    <form action="{{ route('store') }}" method="POST">
+    <h1>Edit Data</h1>
+    <form action="{{ route('update', $dosen->id) }}" method="POST">
+        @method('PUT')
         @csrf
         
         <!-- Name Input -->
         <label>Name:</label><br>
-        <input type="text" name="name" value="{{ old('name') }}"><br>
+        <input type="text" name="name" value="{{ old('name', $dosen->name) }}"><br>
         @error('name')
             <span style="color:red;">{{ $message }}</span><br>
         @enderror
 
         <!-- Age Input -->
         <label>Age:</label><br>
-        <input type="number" name="age" value="{{ old('age') }}"><br>
+        <input type="number" name="age" value="{{ old('age', $dosen->age) }}"><br>
         @error('age')
             <span style="color:red;">{{ $message }}</span><br>
         @enderror
@@ -107,8 +108,8 @@
         <!-- Gender Input -->
         <label>Gender:</label><br>
         <select name="gender">
-            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+            <option value="male" {{ old('gender', $dosen->gender) == 'male' ? 'selected' : '' }}>Male</option>
+            <option value="female" {{ old('gender', $dosen->gender) == 'female' ? 'selected' : '' }}>Female</option>
         </select><br>
         @error('gender')
             <span style="color:red;">{{ $message }}</span><br>
@@ -116,7 +117,7 @@
 
         <!-- Birthdate Input -->
         <label>Birthdate:</label><br>
-        <input type="date" name="birthdate" value="{{ old('birthdate') }}"><br>
+        <input type="date" name="birthdate" value="{{ old('birthdate', $dosen->birthdate) }}"><br>
         @error('birthdate')
             <span style="color:red;">{{ $message }}</span><br>
         @enderror
@@ -125,7 +126,7 @@
         <label>Is Active:</label><br>
         <!-- Hidden field to send 0 if checkbox is not checked -->
         <input type="hidden" name="is_active" value="0">
-        <input type="checkbox" name="is_active" value="1" {{ old('is_active') ? 'checked' : '' }}><br>
+        <input type="checkbox" name="is_active" value="1" {{ old('is_active', $dosen->is_active) ? 'checked' : '' }}><br>
         @error('is_active')
             <span style="color:red;">{{ $message }}</span><br>
         @enderror

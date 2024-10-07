@@ -4,6 +4,93 @@
 <html>
 <head>
     <title>Data Dosen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+    
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+    
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+    
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    
+        tr:hover {
+            background-color: #ddd;
+        }
+    
+        td {
+            color: #555;
+        }
+                /* Green background for the column above the buttons */
+        table th.action-header {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Button container */
+        .action-btn-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Buttons */
+        .action-btn {
+            padding: 8px 16px;
+            margin-right: 10px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .edit-btn {
+            background-color: #3498db;
+        }
+
+        .edit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+    </style>
+    
 </head>
 <body>
     <h1>Data Dosen</h1>
@@ -15,6 +102,7 @@
             <th>Gender</th>
             <th>Birthdate</th>
             <th>Active</th>
+            <th class="action-header">Actions</th> <!-- Add this class to the actions column -->
         </tr>
         @foreach($data as $row)
         <tr>
@@ -24,8 +112,20 @@
             <td>{{ $row->gender }}</td>
             <td>{{ $row->birthdate }}</td>
             <td>{{ $row->is_active ? 'Yes' : 'No' }}</td>
+            <td>
+                <div class="action-btn-container">
+                    <a href="{{ route('update', $row->id) }}" class="action-btn edit-btn">Edit</a>
+                    <form action="{{ route('destroy', $row->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="action-btn delete-btn">Hapus</button>
+                    </form>
+                </div>
+            </td>
         </tr>
         @endforeach
     </table>
+    
 </body>
 </html>
+

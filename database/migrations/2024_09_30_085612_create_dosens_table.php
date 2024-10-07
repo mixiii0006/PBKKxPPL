@@ -6,16 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+  
     public function up(): void
     {
         Schema::create('dosens', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('age');
-            $table->enum('gender', ['L', 'P']);
+            $table->enum('gender', ['Male', 'Female']);
             $table->date('birthdate');
             $table->boolean('is_active')->default(0);
             $table->timestamps();
