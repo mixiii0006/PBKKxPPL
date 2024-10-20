@@ -11,7 +11,7 @@ Route::post('/Dosen/store', [DosenController::class, 'store'])->name('store');
 Route::get('/Dosen/{dosen}', [DosenController::class, 'edit'])->name('edit');
 Route::put('/Dosen/{dosen}', [DosenController::class, 'update'])->name('update');
 Route::delete('/Dosen/{dosen}', [DosenController::class, 'destroy'])->name('destroy');
-
+Route::get('/dosen/{id}', [DosenController::class, 'show']);
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -10,7 +10,7 @@ class DosenController extends Controller
     public function index()
     {
         $data = Dosen::all(); // Mengambil seluruh data dari tabel
-        return view('index', compact('data')); // Mengirim data ke view 
+        return view('index', compact('data')); // Mengirim data ke view
     }
         public function create()
     {
@@ -35,7 +35,7 @@ class DosenController extends Controller
         // Redirect ke halaman index
         return redirect()->route('index')->with('success', 'Data created successfully!');
     }
-    public function edit(Dosen $dosen)  
+    public function edit(Dosen $dosen)
     {
         return view('edit', ['dosen' => $dosen]);
     }
@@ -53,14 +53,24 @@ class DosenController extends Controller
         return redirect('/index')->with('success', 'Buku Berhasil Diupdate');
     }
     public function destroy(Dosen $dosen){
-        
+
         $dosen->delete();
 
         return redirect('/index')->with('success', 'Buku Berhasil Dihapus');
+    }
 
+    public function show($id)
+    {
+        // Find the dosen by id and load related mata kuliahs
+        $dosen = Dosen::with('mataKuliahs')->find($id);
 
-}
+        if (!$dosen) {
+            return response()->json(['message' => 'Dosen tidak ditemukan'], 404);
+        }
+
+        return response()->json($dosen);
 
 }
 
 // app/Http/Controllers/DosenController.php
+}

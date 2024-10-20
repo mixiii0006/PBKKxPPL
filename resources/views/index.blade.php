@@ -11,41 +11,41 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-    
+
         h1 {
             color: #333;
             text-align: center;
         }
-    
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             background-color: #fff;
         }
-    
+
         table, th, td {
             border: 1px solid #ddd;
         }
-    
+
         th, td {
             padding: 12px;
             text-align: center;
         }
-    
+
         th {
             background-color: #4CAF50;
             color: white;
         }
-    
+
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-    
+
         tr:hover {
             background-color: #ddd;
         }
-    
+
         td {
             color: #555;
         }
@@ -90,7 +90,7 @@
         }
 
     </style>
-    
+
 </head>
 <body>
     <h1>Data Dosen</h1>
@@ -102,7 +102,8 @@
             <th>Gender</th>
             <th>Birthdate</th>
             <th>Active</th>
-            <th class="action-header">Actions</th> <!-- Add this class to the actions column -->
+            <th>Mata Kuliah</th> <!-- Tambahkan kolom Mata Kuliah -->
+            <th class="action-header">Actions</th>
         </tr>
         @foreach($data as $row)
         <tr>
@@ -112,6 +113,13 @@
             <td>{{ $row->gender }}</td>
             <td>{{ $row->birthdate }}</td>
             <td>{{ $row->is_active ? 'Yes' : 'No' }}</td>
+            <td>
+                <!-- Menampilkan mata kuliah yang diambil oleh dosen -->
+                @foreach($row->mataKuliah as $mataKuliah)
+                    {{ $mataKuliah->nama }} <!-- Ganti 'nama' dengan nama kolom yang sesuai di tabel mata kuliah -->
+                    @if (!$loop->last), @endif <!-- Menambahkan koma antara mata kuliah -->
+                @endforeach
+            </td>
             <td>
                 <div class="action-btn-container">
                     <a href="{{ route('update', $row->id) }}" class="action-btn edit-btn">Edit</a>
@@ -125,7 +133,6 @@
         </tr>
         @endforeach
     </table>
-    
 </body>
 </html>
 
