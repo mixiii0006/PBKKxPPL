@@ -15,14 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_mk');
             $table->integer('sks');
-            $table->unsignedBigInteger('dosen_id');  // Foreign key to dosens table
+            $table->foreignIdFor(\App\Models\Dosen::class,'dosen_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-
-            // Define the foreign key constraint
-            $table->foreign('dosen_id')->references('id')->on('dosens')->onDelete('cascade');
         });
     }
-
     public function down(): void
     {
         Schema::dropIfExists('mata_kuliahs');

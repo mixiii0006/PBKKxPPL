@@ -106,6 +106,7 @@
             <th class="action-header">Actions</th>
         </tr>
         @foreach($data as $row)
+        
         <tr>
             <td>{{ $row->id }}</td>
             <td>{{ $row->name }}</td>
@@ -114,12 +115,14 @@
             <td>{{ $row->birthdate }}</td>
             <td>{{ $row->is_active ? 'Yes' : 'No' }}</td>
             <td>
-                <!-- Menampilkan mata kuliah yang diambil oleh dosen -->
-                @foreach($row->mataKuliah as $mataKuliah)
-                    {{ $mataKuliah->nama }} <!-- Ganti 'nama' dengan nama kolom yang sesuai di tabel mata kuliah -->
-                    @if (!$loop->last), @endif <!-- Menambahkan koma antara mata kuliah -->
-                @endforeach
+                <ul>
+                    @foreach($row->mataKuliahs as $mk)
+                        <li>{{ $mk->nama_mk }} ({{ $mk->sks }} SKS)</li>
+                    @endforeach
+                </ul>
             </td>
+
+
             <td>
                 <div class="action-btn-container">
                     <a href="{{ route('update', $row->id) }}" class="action-btn edit-btn">Edit</a>

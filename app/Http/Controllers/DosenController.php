@@ -9,8 +9,10 @@ class DosenController extends Controller
 {
     public function index()
     {
-        $data = Dosen::all(); // Mengambil seluruh data dari tabel
-        return view('index', compact('data')); // Mengirim data ke view
+        $data = Dosen::with('mataKuliahs')->get();
+
+        return view('index', compact('data'));
+        // Mengirim data ke view
     }
         public function create()
     {
@@ -61,7 +63,7 @@ class DosenController extends Controller
 
     public function show($id)
     {
-        // Find the dosen by id and load related mata kuliahs
+
         $dosen = Dosen::with('mataKuliahs')->find($id);
 
         if (!$dosen) {

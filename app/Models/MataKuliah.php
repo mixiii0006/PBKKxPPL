@@ -9,12 +9,11 @@ class MataKuliah extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama',
-         'kode',
+        'nama_mk',
          'sks',
-         'dosen_id'];
+         'dosen_id',];
 
-    // Define the inverse relationship with Dosen
+
     public function dosen()
     {
         return $this->belongsTo(Dosen::class);

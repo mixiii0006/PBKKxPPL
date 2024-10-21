@@ -20,7 +20,7 @@ class Dosen extends Model
         'birthdate',
         'is_active',
     ];
-      // Define the one-to-many relationship with MataKuliah
+     
       public function mataKuliahs()
       {
           return $this->hasMany(MataKuliah::class);
