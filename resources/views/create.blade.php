@@ -89,20 +89,20 @@
     <h1>Create New Data</h1>
     <form action="{{ route('store') }}" method="POST">
         @csrf
-        
+
         <!-- Name Input -->
         <label>Name:</label><br>
         <input type="text" name="name" value="{{ old('name') }}"><br>
-        @error('name')
+        {{-- @error('name')
             <span style="color:red;">{{ $message }}</span><br>
-        @enderror
+        @enderror --}}
 
         <!-- Age Input -->
         <label>Age:</label><br>
         <input type="number" name="age" value="{{ old('age') }}"><br>
-        @error('age')
+        {{-- @error('age')
             <span style="color:red;">{{ $message }}</span><br>
-        @enderror
+        @enderror --}}
 
         <!-- Gender Input -->
         <label>Gender:</label><br>
@@ -110,25 +110,25 @@
             <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
             <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
         </select><br>
-        @error('gender')
+        {{-- @error('gender')
             <span style="color:red;">{{ $message }}</span><br>
-        @enderror
+        @enderror --}}
 
         <!-- Birthdate Input -->
         <label>Birthdate:</label><br>
         <input type="date" name="birthdate" value="{{ old('birthdate') }}"><br>
-        @error('birthdate')
+        {{-- @error('birthdate')
             <span style="color:red;">{{ $message }}</span><br>
-        @enderror
+        @enderror --}}
 
         <!-- Is Active Checkbox -->
         <label>Is Active:</label><br>
         <!-- Hidden field to send 0 if checkbox is not checked -->
         <input type="hidden" name="is_active" value="0">
         <input type="checkbox" name="is_active" value="1" {{ old('is_active') ? 'checked' : '' }}><br>
-        @error('is_active')
+        {{-- @error('is_active')
             <span style="color:red;">{{ $message }}</span><br>
-        @enderror
+        @enderror --}}
 
         <br>
         <input type="submit" value="Submit">
